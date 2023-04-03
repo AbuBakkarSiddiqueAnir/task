@@ -14,16 +14,20 @@ export default function Counter() {
       hour = min * 60,
       day = hour * 24;
 
-    const end = new Date("Jul 05, 2023 12:00:00").getTime();
+    const end = new Date("April 04, 2023 2:21:00").getTime();
 
     let clockInterval = setInterval(() => {
       const current = new Date().getTime();
       const remaining = end - current;
-
+      if(current > end) {
+        clearInterval(clockInterval);
+        return
+      }
       let dd = Math.floor(remaining / day);
       let hh = Math.floor((remaining % day) / hour);
       let mm = Math.floor((remaining % hour) / min);
       let ss = Math.floor((remaining % min) / sec);
+
 
       setClockData((previous) => {
         return { ...previous, dd, hh, mm, ss };
