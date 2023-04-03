@@ -9,6 +9,8 @@ export default function SubscriptionForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log(validate(email))
+    return
     if (!validate(email)) {
       setAlertClass('alert-validate');
       return;
@@ -28,13 +30,8 @@ export default function SubscriptionForm() {
   }
 
   const validate = (email) => {
-    if (email.trim(/^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/).match() == null) {
-      return false;
-    } else if (email.trim() === '') {
-      return false;
-    }
-
-    return true;
+    const regex = /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
+    return regex.test(email.trim());
   }
 
   return (
